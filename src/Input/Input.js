@@ -18,7 +18,8 @@ const Input = (props) => {
         <div>
             {currentDate}
             <form className='InputWrap' onSubmit={handleOnSubmit}>
-                <input className='Input' value={inputValue} onChange={event => setInputValue(event.target.value)}/>
+                <input className='Input' value={inputValue}
+                       onChange={event => setInputValue(event.target.value)}/>
                 <button className='Button' onClick={() => handleOnClick(inputValue)}>+</button>
             </form>
         </div>
