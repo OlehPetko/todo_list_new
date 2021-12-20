@@ -6,7 +6,7 @@ const Board = (props) => {
     const{board, handelMove} = props
     return (
         <div style={style}>
-            {board.map(el => <Squere el={el} handelMove={handelMove} />)}
+            {board.map(el => <Squere key={el.id} el={el} handelMove={handelMove} />)}
         </div>
     );
 };

@@ -34,14 +34,34 @@ const Kanban = () => {
         getColumn()
         getCard()
     }, [])
+    const deleteCard = async (taskId) => {
+        await axios.delete(`https://nazarov-kanban-server.herokuapp.com/card/${taskId}`)
+            .then(res => console.log(res.data))
+            .catch(error => console.log(error))
+        getCard()
+    }
+
+    const postCard = async (newTask) => {
+        await axios.post('https://nazarov-kanban-server.herokuapp.com/card', {
+            name: newTask,
+        })
+            .then(res => console.log(res.data))
+            .catch(error => console.log(error))
+        getCard()
+    }
+    useEffect(() => {
+        postCard()
+    }, [])
+
 
     return (
         <div>
             <hr/>
-            <InputNewTask />
+            <InputNewTask postCard={postCard}/>
             <div className='container'>
                 <div className='row aling-items-start'>
-                    {column.map(column => <Card key={column._id} cards={cards} column={column}/>)}
+                    {column.map(column => <Card key={column._id} cards={cards} column={column}
+                                                deleteCard={deleteCard}/>)}
                 </div>
             </div>
 
