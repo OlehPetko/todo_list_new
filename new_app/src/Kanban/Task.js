@@ -9,7 +9,7 @@ const Task = (props) => {
                     <p className="card-text">{card.name}</p>
                 </div>
                 <ul className="list-group list-group-flush">
-                    <li className="list-group-item">An item</li>
+                    <li className="list-group-item">{card.description}</li>
                 </ul>
                 <div className="card-body">
                     <button type="button" className="btn btn-info">Info</button>

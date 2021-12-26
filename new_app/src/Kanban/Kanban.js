@@ -44,6 +44,7 @@ const Kanban = () => {
     const postCard = async (newTask) => {
         await axios.post('https://nazarov-kanban-server.herokuapp.com/card', {
             name: newTask,
+            description: newTask
         })
             .then(res => console.log(res.data))
             .catch(error => console.log(error))
