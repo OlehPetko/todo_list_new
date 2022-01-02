@@ -11,7 +11,7 @@ const Column = (props) => {
                 {column.status}
             </h3>
             {cards.filter(card => card.status === column.status)
-                .map(card => <CardItem key={card._id} card={card} deleteCard={deleteCard} moveDirection={moveDirection}/>)}
+                .map(card => <CardItem key={card._id} column={column} card={card} deleteCard={deleteCard} moveDirection={moveDirection}/>)}
         </Col>
 
 

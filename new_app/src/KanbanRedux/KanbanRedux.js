@@ -1,16 +1,24 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Board from "./Board";
 import {connect} from "react-redux";
 import {Container} from "reactstrap";
-import {cardDeleteById} from "../Redux/actions";
+import {addCard, cardDeleteById, getCards, moveDirection} from "../Redux/actions";
 
 const KanbanRedux = (props) => {
-    const {cards, columns} = props
+    useEffect(() => {
+        props.getCards()
+    }, [])
 
+    const addCardHandler = () => {
+        const newCard = {name: 'Liverpool', status: 'todo', priority: 1}
+        props.addCard(newCard)
+    }
+
+    const {cards, columns} = props
     return (
         <Container>
-                <Board cards={cards} columns={columns} addCard={props.addCard} deleteCard={props.deleteCard}
-                       moveDirection={props.moveDirection}/>
+            <Board cards={cards} columns={columns} deleteCard={props.deleteCard}
+                   moveDirection={props.moveDirection} addCardHandler={addCardHandler}/>
         </Container>
     );
 };
@@ -21,8 +29,9 @@ const mapStateToProps = (state) => ({
     columns: state.columns
 })
 const mapDispatchToProps = (dispatch) => ({
-    addCard: () => dispatch({type: 'ADD_CARD'}),
+    addCard: (card) => dispatch(addCard(card)),
+    getCards: () => dispatch(getCards()),
     deleteCard: (cardId) => dispatch(cardDeleteById(cardId)),
-    moveDirection: (cardId, valueId) => dispatch({type: 'MOVE_DIRECTION', payload: cardId, value: valueId})
+    moveDirection: (card, columns) => dispatch(moveDirection(card, columns))
 })
-export default connect(mapStateToProps, mapDispatchToProps )(KanbanRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(KanbanRedux);

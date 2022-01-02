@@ -2,8 +2,9 @@ import React from 'react';
 import {Card, CardBody, CardFooter, CardSubtitle, CardTitle, Button} from "reactstrap";
 
 const CardItem = (props) => {
-    const {card, deleteCard, moveDirection} = props
-    const {name, priority, _id} = card
+    const {card, deleteCard, moveDirection, column} = props
+    const {name, priority, _id, status} = card
+
     return (
         <Card>
             <CardBody>
@@ -15,8 +16,8 @@ const CardItem = (props) => {
                 </CardSubtitle>
                 <CardFooter>
                     <Button onClick={() => deleteCard(_id)}>delete</Button>
-                    {card.status !== 'todo' && <Button onClick={() => moveDirection(_id, -1)}>Left</Button>}
-                    {card.status !== 'done' && <Button onClick={() => moveDirection(_id, 1)}>Right</Button>}
+                    {status !== 'todo' && <Button>Left</Button>}
+                    {status !== 'done' && <Button onClick={() => moveDirection(card, column)}>Right</Button>}
                 </CardFooter>
             </CardBody>
         </Card>
