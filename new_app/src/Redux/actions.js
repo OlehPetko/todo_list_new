@@ -31,12 +31,12 @@ export function cardDeleteById(cardId) {
             .catch((error) => console.log(error))
     }
 }
-export function moveDirection(card, columns) {
+export function moveDirection(cards, columns) {
     const colStatuses = columns.map(el => el.status)
-    const status = colStatuses[colStatuses.indexOf(card.status) + 1]
+    const status = colStatuses[colStatuses.indexOf(cards.status) + 1]
 
     return (dispatch) => {
-        axios.patch('https://nazarov-kanban-server.herokuapp.com/card/' + card, {status})
+        axios.patch('https://nazarov-kanban-server.herokuapp.com/card/' + cards, {status})
             .then(res => dispatch(getCards()))
             .catch(error => console.log(error))
     }

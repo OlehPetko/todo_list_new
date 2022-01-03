@@ -1,10 +1,5 @@
 const initialState = {
-    cards: [
-        {name: 'Liverpool', status: 'todo', priority: 1},
-        {name: 'Liverpool', status: 'progress', priority: 1},
-        {name: 'Liverpool', status: 'review', priority: 1},
-        {name: 'Liverpool', status: 'done', priority: 1}
-    ],
+    cards: [],
     columns: [
         {_id: Math.random(), status: 'todo'},
         {_id: Math.random(), status: 'progress'},
