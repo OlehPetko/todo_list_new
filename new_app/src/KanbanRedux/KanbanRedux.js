@@ -6,12 +6,11 @@ import {addCard, cardDeleteById, getCards, moveDirection} from "../Redux/actions
 
 const KanbanRedux = (props) => {
     useEffect(() => {
-        props.getCards()
-    }, [])
+    })
 
     const addCardHandler = () => {
         const newCard = {name: 'Liverpool', status: 'todo', priority: 1}
-        props.addCard(newCard)
+   
     }
 
     const {cards, columns} = props
@@ -29,9 +28,9 @@ const mapStateToProps = (state) => ({
     columns: state.columns
 })
 const mapDispatchToProps = (dispatch) => ({
-    addCard: (card) => dispatch(addCard(card)),
-    getCards: () => dispatch(getCards()),
-    deleteCard: (cardId) => dispatch(cardDeleteById(cardId)),
-    moveDirection: (card, columns) => dispatch(moveDirection(card, columns))
+    // addCard: (card) => dispatch(addCard(card)),
+    // getCards: () => dispatch(getCards()),
+    // deleteCard: (cardId) => dispatch(cardDeleteById(cardId)),
+    // moveDirection: (card, columns) => dispatch(moveDirection(card, columns))
 })
 export default connect(mapStateToProps, mapDispatchToProps)(KanbanRedux);
